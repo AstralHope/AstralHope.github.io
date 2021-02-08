@@ -10,10 +10,10 @@
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
                     <br>
                     Powered by <a href="http://huangxuan.me">Hux Blog</a> |
-                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+<!--                     <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
                         height="20px"
                         src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
-                    </iframe>
+                    </iframe> -->
                     已勉强运行<span id="runtime_span" style="color: #24a0f0;"></span>
                 </p>
             </div>
@@ -26,7 +26,7 @@
     function show_runtime() {
         //设置一个定时器，每隔1秒执行一次show_runtime()方法
         window.setTimeout("show_runtime()", 1000);  
-        X = new Date("2/8/2021 17:00:00"); //建站时间
+        X = new Date({ site.start_time }); //建站时间
         Y = new Date();
         T = (Y.getTime() - X.getTime());
         M = 24 * 60 * 60 * 1000;

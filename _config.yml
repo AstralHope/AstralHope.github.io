@@ -8,16 +8,19 @@ keyword: "突击核, 博客, 个人网站, 互联网, Web"
 url: "https://blog.39hope.com"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
+#建站时间
+start_time: "2/8/2020 17:00:00"
+
 # Publish posts or collection documents with a future date.
 future: true
 
 # SNS settings
 RSS: false
 weibo_username:     2264850295
-zhihu_username:     guo-suo-mou-82
+#zhihu_username:     guo-suo-mou-82
 github_username:    astralhope
 twitter_username:   A_Assault_Core
-facebook_username:  100016746018366
+#facebook_username:  100016746018366
 #linkedin_username:  firstname-lastname-idxxxx
 bilibili_username:  11054936
 
