@@ -1,6 +1,6 @@
 # Site settings
-title: Astral Blog
-SEOTitle: 突击核的博客 | Astral Blog
+title: 突击核的博客
+SEOTitle: 突击核的博客 - 记录自己踩过的坑
 header-img: img/home-bg.jpg
 email: astralhope@gmail.com
 description: "这里是 @突击核 的个人博客，与你一起发现更大的世界。"
@@ -13,11 +13,11 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
+weibo_username:     2264850295
+zhihu_username:     guo-suo-mou-82
 github_username:    astralhope
-twitter_username:   huxpro
-#facebook_username:  huxpro
+twitter_username:   A_Assault_Core
+facebook_username:  100016746018366
 #linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -59,7 +59,10 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: astralhope
+
+# Duoshuo settings
+#duoshuo_username: hux
 
 # Netease settings
 netease_comment: false
@@ -71,15 +74,15 @@ netease_comment: false
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: 'G-GEP3VY2R6F'            # Format: UA-xxxxxx-xx
+ga_domain: blog.39hope.com
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "For the next quantum leap<br>离开世界之前，一切都是过程"
-sidebar-avatar: /img/avatar-hux-ny.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "记录点点滴滴<br>做真实的自己"
+sidebar-avatar: /img/avatar-astral-sl.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
