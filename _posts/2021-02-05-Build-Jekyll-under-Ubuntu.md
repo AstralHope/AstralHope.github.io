@@ -16,9 +16,6 @@ tags:
 **使用环境**：Ubuntu 18.04 x86_64   
 **目标**：在Ubuntu服务器上搭建Jekyll，使用Nginx代理并开启https，保持与GitPage同步更新    
 ## 准备工作：
-安装好Nginx、申请好SSL证书
-
-这里我使用lnmp完成，目标域名为`blog.39hope.com`
 
 新建一个非root用户`adduser username`
 
@@ -56,6 +53,7 @@ cd my-awesome-site
 <!--bundle exec jekyll serve-->
 bundle exec jekyll serve --host=0.0.0.0
 ```
+
 访问`http://IP:4000`，访问到初始页面即完成初始设置
 ## GitHub选取想要的博客主题进行修改
 我这里选择[黄玄](https://github.com/Huxpro/huxpro.github.io)的主题进行修改。
@@ -72,7 +70,9 @@ bundle exec jekyll serve --host=0.0.0.0
 
 5. 在`_includes/about`下面修改自己版本的about me。在`index.html`中修改自己的副标题，添加自己的主页配图
 
-6. 在`_posts/`下存放markdown格式的文章即可在博客中显示，注意文件名必须是形如`2020-02-05-君の名は`的形式，最后的文章路径会是xxx.io/2020/02/05/君の名は的形势，这里的时间其实是以下面yaml的时间为准，文章名字用英文的话可以链接的书写，也可以是其他字符。
+6. 修改`pwa`目录下的json文件和图标为自己的；修改`sw.js`里引用的图像为你自己想用的
+
+7. 在`_posts/`下存放markdown格式的文章即可在博客中显示，注意文件名必须是形如`2020-02-05-君の名は`的形式，最后的文章路径会是xxx.io/2020/02/05/君の名は的形势，这里的时间其实是以下面yaml的时间为准，文章名字用英文的话可以链接的书写，也可以是其他字符。
 
 yaml 头文件格式如下
 
@@ -94,9 +94,47 @@ tags:
 
 完成后push到GitHub上继续在服务器上进行操作。
 ## 服务器上部署博客
-这里继续使用上面创建的非root用户进行操作
+首先`git clone`博客到你打算运行的目录（请保证这个位置`www`用户可访问），然后进入该目录，执行`bundle exec jekyll serve --host=0.0.0.0`
+按提示执行`gem install jekyll-paginate`后再次运行上面的命令
+访问`http://IP:4000`查看效果
 
-首先`git clone`博客到你打算运行的目录，然后进入该目录，执行`bundle exec jekyll serve --host=0.0.0.0`
+接着安装好Nginx、申请好SSL证书开始部署https访问
+
+这里我使用lnmp完成，目标域名为`blog.39hope.com`，创建好vhost后修改配置文件，使所有访问使用https访问并转发到4000短款，配置文件如下
+
+```
+server {
+  listen         80;
+  server_name    blog.39hope.com;
+  rewrite        ^   https://$server_name$request_uri? permanent;
+}
+server {  
+  listen                 443 ssl http2;
+  server_name            blog.39hope.com;
+  ssl                    on;
+  ssl_certificate        /usr/local/nginx/****/fullchain.cer;
+  ssl_certificate_key    /usr/local/nginx/****/blog.39hope.com.key;
+  location / {
+      proxy_set_header   X-Real-IP        $remote_addr;
+      proxy_set_header   Host             $http_host;
+      proxy_set_header   X-Frame-Options  DENY;
+      proxy_pass         http://127.0.0.1:4000;
+  }
+}
+```
+完成后回到博客所在目录执行
+`screen -S blog`
+`bundle exec jekyll serve`，直接使用域名访问，可以正常访问则配置成功。然后执行，退出ssh使jekyll保持在后台运行
+
+然后配置自动更新，再新建一个vhost，用于访问webhook的url,这里以webhook.php举例，首先编辑php.ini,搜索disable_functions删掉shell_exec。编辑`php-fpm.conf`，将user和group修改为前面准备的用户。完成后执行`service php-fpm restart`重启php。lnmp的安装目录位为`/usr/local/php/etc`
+
+编写一个脚本用于更新制定目录，我的脚本如下
+
+```shell
+#!/bin/bash
+cd astralhope.github.io/
+git pull >> /home/wwwroot/blog.39hope.com/log.txt
+#bundle exec jekyll serve &
+```
 
 未完待续
-
