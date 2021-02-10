@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ubuntu下搭建Jekyll博客完整过程记录"
+title: "Markdown语法"
 subtitle: ''
 date: 2020-06-04 10:21:00
 author: "突击核"

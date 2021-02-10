@@ -110,9 +110,9 @@ friends: [
     #     title: "Su",
     #     href: "http://su.gallery/"
     # },{
-        title: "Hux Blog",
-        href: "huangxuan.me"
-    },{
+    #     title: "Hux Blog",
+    #     href: "huangxuan.me"
+    # },{
         title: "科学上网",
         href: "https://dts.39hope.icu"
     }
