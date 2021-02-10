@@ -11,7 +11,6 @@ tags:
   - Jekyll
   - ubuntu
 ---
-
 # Ubuntu下搭建Jekyll博客完整过程记录
 **使用环境**：Ubuntu 18.04 x86_64   
 **目标**：在Ubuntu服务器上搭建Jekyll，使用Nginx代理并开启https，保持与GitPage同步更新    
@@ -94,7 +93,8 @@ tags:
 
 完成后push到GitHub上继续在服务器上进行操作。
 ## 服务器上部署博客
-首先`git clone`博客到你打算运行的目录（请保证这个位置`www`用户可访问），然后进入该目录，执行`bundle exec jekyll serve --host=0.0.0.0`
+首先使用前面创建的用户执行`git clone`博客到你打算运行的目录，然后进入该目录，执行`bundle exec jekyll serve --host=0.0.0.0`
+
 按提示执行`gem install jekyll-paginate`后再次运行上面的命令
 访问`http://IP:4000`查看效果
 
@@ -122,13 +122,29 @@ server {
   }
 }
 ```
-完成后回到博客所在目录执行
-`screen -S blog`
-`bundle exec jekyll serve`，直接使用域名访问，可以正常访问则配置成功。然后执行，退出ssh使jekyll保持在后台运行
+完成后回到博客所在目录执行`screen -S blog`
 
+然后执行`bundle exec jekyll serve`
+
+最后使用域名访问，可以正常访问则配置成功。退出ssh使jekyll保持在后台运行
+## 使用webhook自动更新
 然后配置自动更新，再新建一个vhost，用于访问webhook的url,这里以webhook.php举例，首先编辑php.ini,搜索disable_functions删掉shell_exec。编辑`php-fpm.conf`，将user和group修改为前面准备的用户。完成后执行`service php-fpm restart`重启php。lnmp的安装目录位为`/usr/local/php/etc`
 
 编写一个脚本用于更新制定目录，我的脚本如下
+
+```php
+<!--webhook.php-->
+<?php
+/**
+* 记得在此处追加webhook验证，可不敢裸奔啊
+*
+*/
+
+//执行shell命令并把返回信息写进日志
+shell_exec("cd /home/wwwroot/blog.39hope.com  && date >> log.txt  &&  /home/wwwroot/blog.39hope.com/update.sh");
+?>
+
+```
 
 ```shell
 #!/bin/bash
@@ -137,4 +153,13 @@ git pull >> /home/wwwroot/blog.39hope.com/log.txt
 #bundle exec jekyll serve &
 ```
 
-未完待续
+完成后每次更新git push到GitHub后服务器上就会自动更新
+
+##存在的问题
+1. 系统重启后需要手动执行`screen -S blog`和`bundle exec jekyll serve`启动服务
+2. 公式、流程图的支持还在探索阶段，支持情况可以查看[Markdown语法](https://blog.39hope.com/2020/06/04/Markdown-grammar/)中哪些已可正常显示验证。
+
+解决办法参考：
+1. [ubuntu开机以指定用户身份执行脚本](https://www.jianshu.com/p/4f7416ae1cd7)
+
+2. [jekyll-mermaid](https://rubygems.org/gems/jekyll-mermaid/versions/1.0.0)
