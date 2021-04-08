@@ -6,6 +6,7 @@ date: 2020-06-04 10:21:00
 author: "突击核"
 header-style: text
 hidden: true
+mathjax: true
 tags:
   - Markdown
 ---

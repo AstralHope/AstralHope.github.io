@@ -7,10 +7,10 @@ author: "突击核"
 header-style: text
 hidden: false
 tags:
-  - Windows
-  - 黑苹果
-  - Hackintosh
-  - Diskpart
+  - nginx
+  - v2ray
+  - ubuntu
+  - 科学上网
 ---
 #v2ray （ws+tls）手动安装过程记录
 
