@@ -499,9 +499,9 @@ Markdown 语法：
 块级公式：
 $$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
-\\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
+$$ [ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
-{1+\frac{e^{-8\pi}} {1+\ldots} } } } \\]
+{1+\frac{e^{-8\pi}} {1+\ldots} } } } ]$$
 
 行内公式： $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$
 ```
@@ -511,9 +511,9 @@ $$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 块级公式：
 $$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
-\\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
+$$ [ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
-{1+\frac{e^{-8\pi}} {1+\ldots} } } } \\]
+{1+\frac{e^{-8\pi}} {1+\ldots} } } } ]$$
 
 
 行内公式： $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$
